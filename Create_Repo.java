@@ -1,0 +1,40 @@
+import java.io.IOException;
+
+/*
+ * class name: Create_Repo
+ * Implements the RunOperation to create a new repo at the specified location
+ *  sc: uses the singleton for input parsing 
+ */
+  
+public class Create_Repo implements Component_Input {
+    
+    private InputParser sc = InputParser.getParser();    
+    
+    /*
+     * RunOperation: implented so that a new repository will be created at dest with src 
+     *      syntax: create 'source' 'destination'
+     */
+    @Override
+    public void RunOperation() {
+        String src;
+        String dest;
+        String[] arr;
+        
+        src = sc.GetToken();
+        dest = sc.GetToken();
+        System.out.println( "Create a new repository from source: " + src );
+        System.out.println( "Copy repository into: " + dest );
+        arr = new String[ 3 ];
+        arr[0] = "create";
+        arr[1] = src;
+        arr[2] = dest;
+        try {
+            CreateMain.CreateSource( arr );
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+}
